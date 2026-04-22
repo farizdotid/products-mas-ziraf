@@ -1,20 +1,38 @@
 [
   {
-    "title": "Awesome Website",
-    "description": "A high-performance, SEO-optimized web application built with modern frameworks to showcase technical expertise.",
-    "images": ["astro-01.webp", "astro-02.jpeg"],
-    "tech": ["Astro", "Tailwind"],
+    "title": "Airamate",
+    "description": "Catat Pengeluaran Semudah Chatting di WhatsApp",
+    "images": ["ss_aira.jpg"],
+    "tech": ["Flutter", "Dart", "REST API"],
     "platforms": ["web"],
-    "link": "https://astro.build/themes/details/career-portfolio-data-driven-astro-ssg/",
-    "category": "Published Website"
+    "link": "https://airamate.my.id/",
+    "category": "Hobby"
   },
   {
-    "title": "Demo Mobile App",
-    "description": "A high-performance mobile application built with modern frameworks to showcase technical expertise.",
-    "images": ["astro-02.jpeg", "#"],
+    "title": "Pain Gain",
+    "description": "Gak perlu pusing mikir ide konten. Bedah masalah audiensmu dan buatkan ide Caption, Video, hingga Carousel dalam hitungan detik.",
+    "images": ["ss_paingain.jpg"],
     "tech": ["Flutter", "Dart", "REST API"],
-    "platforms": ["apple-ios", "android"],
-    "link": "https://github.com/nbakh16/career-portfolio-template",
+    "platforms": ["web"],
+    "link": "https://paingain.masziraf.com/",
+    "category": "Hobby"
+  },
+  {
+    "title": "Gapura App",
+    "description": "Platform digital terdepan untuk UMKM Indonesia. Temukan produk lokal terbaik atau buat katalog online bisnis Anda sekarang.",
+    "images": ["ss_gapura.jpg"],
+    "tech": ["Flutter", "Dart", "REST API"],
+    "platforms": ["web"],
+    "link": "https://gapuraapp.com/",
+    "category": "Hobby"
+  },
+  {
+    "title": "Gapura Film",
+    "description": "Melihat Purwakarta melalui lensa mereka. Tonton karya jujur sineas lokal, berikan apresiasi, dan hidupkan mimpinya.",
+    "images": ["ss_gapura_film.jpg"],
+    "tech": ["Flutter", "Dart", "REST API"],
+    "platforms": ["web"],
+    "link": "https://film.gapuraapp.com/",
     "category": "Hobby"
   }
 ]

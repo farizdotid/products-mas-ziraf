@@ -3,8 +3,8 @@
 @theme {
   /* Colors */
   --color-accent: #a476ff;
-  --color-background: #1d1a3c;
-  --color-container: #24243e;
+  --color-background: #1D3B8D;
+  --color-container: #0F43AA;
   --color-line: #f3f3f310;
   --color-gray: #ffffffaf;
   --color-darkgray: rgba(255, 255, 255, 0.3);
@@ -46,9 +46,9 @@
     @apply font-body antialiased text-white;
     background: linear-gradient(
       135deg,    
-    #1f1c2c 0%,
-    #1d1a3c 50%,
-    #24243e 100%
+    #0F43AA 0%,
+    #1D3B8D 50%,
+    #0d2a6a 100%
     );
     background-attachment: fixed;
     min-height: 100vh;
