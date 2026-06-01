@@ -23,12 +23,10 @@ const { title } = Astro.props;
   <body
     class="bg-background relative min-h-screen overflow-x-hidden antialiased"
   >
-    <div
-      id="matrix-container"
+    <canvas
+      id="balls-bg"
       class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
-      style="mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 0%, black 80%, transparent 100%);"
-    >
-    </div>
+    ></canvas>
 
     <main
       class="px-2 sm:px-12 md:px-14 lg:px-28 max-w-360 mx-auto relative z-0"
@@ -82,83 +80,75 @@ const { title } = Astro.props;
     </button>
 
     <script>
-      const container = document.getElementById("matrix-container");
-      const characters = "{}[]()<>/\=+*01;";
-      // const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@&%";
-      const colors = [
-        "#FF4500",
-        "#32CD32",
-        "#1E90FF",
-        "#FFD700",
-        "#8A2BE2",
-        "#FF1493",
-      ];
+      // ** BALLS BACKGROUND ** //
+      const canvas = document.getElementById("balls-bg") as HTMLCanvasElement;
+      const ctx = canvas.getContext("2d")!;
 
-      function createLetter() {
-        if (!container) return;
+      const COLORS = ["#FF4500", "#32CD32", "#1E90FF", "#FFD700", "#8A2BE2", "#FF1493"];
+      const BALL_COUNT_DESKTOP = 18;
+      const BALL_COUNT_MOBILE = 8;
 
-        const span = document.createElement("span");
-        const char = characters[Math.floor(Math.random() * characters.length)];
-        // const color = colors[Math.floor(Math.random() * colors.length)];
-        const color = "var(--color-darkgray)";
+      type Ball = {
+        x: number; y: number;
+        vx: number; vy: number;
+        r: number; color: string; alpha: number;
+      };
 
-        const left = Math.random() * 100;
-        const duration = 4 + Math.random() * 8; // 4s to 10s
-        const size = 10 + Math.random() * 10; // 10px to 20px
+      let balls: Ball[] = [];
 
-        span.innerText = char;
-        span.className = "falling-letter";
-        span.style.left = `${left}vw`;
-        span.style.color = color;
-        span.style.fontSize = `${size}px`;
-        span.style.animationDuration = `${duration}s`;
-
-        // Add a slight glow effect
-        span.style.textShadow = `0 0 5px ${color}`;
-
-        container.appendChild(span);
-
-        setTimeout(() => {
-          span.remove();
-        }, duration * 1000);
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
 
-      if (window.innerWidth > 768) {
-        // one letter every 250ms
-        setInterval(createLetter, 250);
-      } else {
-        // Static scatter effect for mobile optimization
-        const mobileCount = 20;
-        for (let i = 0; i < mobileCount; i++) {
-          createStaticLetter();
+      function randomBall(): Ball {
+        const r = 40 + Math.random() * 80;
+        return {
+          x: r + Math.random() * (canvas.width - r * 2),
+          y: r + Math.random() * (canvas.height - r * 2),
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r,
+          color: COLORS[Math.floor(Math.random() * COLORS.length)],
+          alpha: 0.04 + Math.random() * 0.06,
+        };
+      }
+
+      function initBalls() {
+        const count = window.innerWidth > 768 ? BALL_COUNT_DESKTOP : BALL_COUNT_MOBILE;
+        balls = Array.from({ length: count }, randomBall);
+      }
+
+      function drawBall(b: Ball) {
+        const grad = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+        grad.addColorStop(0, b.color + Math.round(b.alpha * 255).toString(16).padStart(2, "0"));
+        grad.addColorStop(1, b.color + "00");
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const b of balls) {
+          b.x += b.vx;
+          b.y += b.vy;
+          if (b.x - b.r < 0 || b.x + b.r > canvas.width)  b.vx *= -1;
+          if (b.y - b.r < 0 || b.y + b.r > canvas.height) b.vy *= -1;
+          drawBall(b);
         }
+        requestAnimationFrame(tick);
       }
 
-      function createStaticLetter() {
-        if (!container) return;
+      resize();
+      initBalls();
+      tick();
 
-        const span = document.createElement("span");
-        const char = characters[Math.floor(Math.random() * characters.length)];
-        const color = "var(--color-darkgray)";
-
-        const left = Math.random() * 100;
-        const top = Math.random() * 90; // Random vertical position
-        const size = 10 + Math.random() * 10;
-
-        span.innerText = char;
-        span.className = "falling-letter"; // from global.css
-
-        // Override animation for mobile 'none'
-        span.style.animation = "none";
-        span.style.left = `${left}vw`;
-        span.style.top = `${top}vh`;
-        span.style.color = color;
-        span.style.fontSize = `${size}px`;
-        span.style.opacity = (0.1 + Math.random() * 0.3).toString();
-        span.style.textShadow = `0 0 5px ${color}`;
-
-        container.appendChild(span);
-      }
+      window.addEventListener("resize", () => {
+        resize();
+        initBalls();
+      });
 
       // ** SCROLL TO TOP ** //
       const toTopBtn = document.getElementById("to-top");

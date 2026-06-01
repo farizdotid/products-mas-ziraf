@@ -1,26 +1,17 @@
 [
   {
-    "title": "Airamate",
-    "description": "Catat Pengeluaran Semudah Chatting di WhatsApp",
-    "images": ["ss_aira.jpg"],
+    "title": "Mula Bisnis",
+    "description": "Panduan interaktif membangun bisnis digital dari skill yang kamu punya. Nama brand, strategi konten, kalender posting — semua dalam satu tempat.",
+    "images": ["ss_mulabisnis.webp"],
     "tech": ["Flutter", "Dart", "REST API"],
     "platforms": ["web"],
-    "link": "https://airamate.my.id/",
-    "category": "Hobby"
-  },
-  {
-    "title": "Pain Gain",
-    "description": "Gak perlu pusing mikir ide konten. Bedah masalah audiensmu dan buatkan ide Caption, Video, hingga Carousel dalam hitungan detik.",
-    "images": ["ss_paingain.jpg"],
-    "tech": ["Flutter", "Dart", "REST API"],
-    "platforms": ["web"],
-    "link": "https://paingain.masziraf.com/",
+    "link": "https://mulabisnis.com/",
     "category": "Hobby"
   },
   {
     "title": "Gapura App",
     "description": "Platform digital terdepan untuk UMKM Indonesia. Temukan produk lokal terbaik atau buat katalog online bisnis Anda sekarang.",
-    "images": ["ss_gapura.jpg"],
+    "images": ["ss_gapura.webp"],
     "tech": ["Flutter", "Dart", "REST API"],
     "platforms": ["web"],
     "link": "https://gapuraapp.com/",
@@ -29,10 +20,19 @@
   {
     "title": "Gapura Film",
     "description": "Melihat Purwakarta melalui lensa mereka. Tonton karya jujur sineas lokal, berikan apresiasi, dan hidupkan mimpinya.",
-    "images": ["ss_gapura_film.jpg"],
+    "images": ["ss_gapura_film.webp"],
     "tech": ["Flutter", "Dart", "REST API"],
     "platforms": ["web"],
     "link": "https://film.gapuraapp.com/",
+    "category": "Hobby"
+  },
+  {
+    "title": "Airamate",
+    "description": "Catat Pengeluaran Semudah Chatting di WhatsApp",
+    "images": ["ss_aira.webp"],
+    "tech": ["Flutter", "Dart", "REST API"],
+    "platforms": ["web"],
+    "link": "https://airamate.my.id/",
     "category": "Hobby"
   }
 ]
